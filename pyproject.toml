@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "watchpost"
+version = "0.1.0"
+description = "Catch risky AWS changes as they happen, then fix them or alert."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Primel Jayawardana" }]
+dependencies = []  # boto3 is already in the AWS Lambda runtime
+
+[project.optional-dependencies]
+dev = ["boto3", "moto[ec2,s3,iam,sns,sqs,cloudtrail]>=5", "pytest>=8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]

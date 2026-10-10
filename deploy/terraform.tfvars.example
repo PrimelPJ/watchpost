@@ -1,0 +1,6 @@
+# Copy to terraform.tfvars and change what you need.
+mode        = "alert" # switch to "fix" once you trust the alerts
+alert_email = "you@example.com"
+
+# In us-east-1 keep this true. In every other region set it to false.
+watch_global_events = true

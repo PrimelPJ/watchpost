@@ -1,0 +1,32 @@
+{
+  "version": "0",
+  "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  "detail-type": "AWS API Call via CloudTrail",
+  "source": "aws.cloudtrail",
+  "account": "123456789012",
+  "time": "2026-10-10T21:30:01Z",
+  "region": "ca-central-1",
+  "resources": [],
+  "detail": {
+    "eventVersion": "1.09",
+    "userIdentity": {
+      "type": "IAMUser",
+      "principalId": "AIDAEXAMPLEUSER0001",
+      "arn": "arn:aws:iam::123456789012:user/dev-alex",
+      "accountId": "123456789012",
+      "userName": "dev-alex"
+    },
+    "eventTime": "2026-10-10T21:30:00Z",
+    "eventSource": "cloudtrail.amazonaws.com",
+    "eventName": "DeleteTrail",
+    "awsRegion": "ca-central-1",
+    "sourceIPAddress": "203.0.113.24",
+    "userAgent": "aws-cli/2.17.0",
+    "requestParameters": {
+      "name": "main"
+    },
+    "responseElements": null,
+    "eventType": "AwsApiCall",
+    "eventID": "11111111-2222-3333-4444-555555555555"
+  }
+}

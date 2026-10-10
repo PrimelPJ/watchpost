@@ -1,0 +1,26 @@
+{
+  "version": "0",
+  "id": "ffffffff-0000-1111-2222-333333333333",
+  "detail-type": "GuardDuty Finding",
+  "source": "aws.guardduty",
+  "account": "123456789012",
+  "time": "2026-10-10T21:30:01Z",
+  "region": "ca-central-1",
+  "resources": [],
+  "detail": {
+    "schemaVersion": "2.0",
+    "accountId": "123456789012",
+    "region": "ca-central-1",
+    "id": "a1b2c3d4e5f60718293a4b5c6d7e8f90",
+    "type": "CryptoCurrency:EC2/BitcoinTool.B!DNS",
+    "title": "An EC2 instance is talking to a domain linked to bitcoin mining.",
+    "severity": 8.0,
+    "resource": {
+      "resourceType": "Instance",
+      "instanceDetails": {
+        "instanceId": "i-0123456789abcdef0",
+        "instanceType": "t3.micro"
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "version": "0",
+  "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  "detail-type": "AWS API Call via CloudTrail",
+  "source": "aws.iam",
+  "account": "123456789012",
+  "time": "2026-10-10T21:30:01Z",
+  "region": "us-east-1",
+  "resources": [],
+  "detail": {
+    "eventVersion": "1.09",
+    "userIdentity": {
+      "type": "Root",
+      "principalId": "123456789012",
+      "arn": "arn:aws:iam::123456789012:root",
+      "accountId": "123456789012"
+    },
+    "eventTime": "2026-10-10T21:30:00Z",
+    "eventSource": "iam.amazonaws.com",
+    "eventName": "CreateAccessKey",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "203.0.113.24",
+    "userAgent": "aws-cli/2.17.0",
+    "requestParameters": {},
+    "responseElements": null,
+    "eventType": "AwsApiCall",
+    "eventID": "11111111-2222-3333-4444-555555555555"
+  }
+}

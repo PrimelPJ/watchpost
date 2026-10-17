@@ -92,6 +92,7 @@ class Settings:
     topic_arn: str = ""
     disabled: set[str] = field(default_factory=set)
     min_guardduty_severity: float = 7.0
+    alert_on_root_activity: bool = True
 
     @property
     def fix(self) -> bool:
@@ -108,6 +109,7 @@ class Settings:
             topic_arn=os.environ.get("WATCHPOST_TOPIC_ARN", ""),
             disabled=disabled,
             min_guardduty_severity=float(os.environ.get("WATCHPOST_GUARDDUTY_MIN_SEVERITY", "7")),
+            alert_on_root_activity=os.environ.get("WATCHPOST_ALERT_ON_ROOT", "true").lower() != "false",
         )
 
 

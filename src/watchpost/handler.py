@@ -51,6 +51,9 @@ def handle(raw: dict, settings: Settings) -> dict:
                 )
             )
 
+    if len(actions) > settings.max_actions_per_event:
+        actions = actions[:settings.max_actions_per_event]
+
     for action in actions:
         log.info(json.dumps({"watchpost": action.to_dict(), "mode": settings.mode, "account": event.account}))
         if settings.topic_arn:

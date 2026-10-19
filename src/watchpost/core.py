@@ -93,6 +93,7 @@ class Settings:
     disabled: set[str] = field(default_factory=set)
     min_guardduty_severity: float = 7.0
     alert_on_root_activity: bool = True
+    max_actions_per_event: int = 50
 
     @property
     def fix(self) -> bool:
@@ -110,6 +111,7 @@ class Settings:
             disabled=disabled,
             min_guardduty_severity=float(os.environ.get("WATCHPOST_GUARDDUTY_MIN_SEVERITY", "7")),
             alert_on_root_activity=os.environ.get("WATCHPOST_ALERT_ON_ROOT", "true").lower() != "false",
+            max_actions_per_event=int(os.environ.get("WATCHPOST_MAX_ACTIONS", "50")),
         )
 
 

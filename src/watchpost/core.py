@@ -179,3 +179,36 @@ def api_call(service: str, *names: str) -> Match:
         )
 
     return match
+
+
+# Remediation cooldown: prevent the same Lambda from firing repeatedly
+# on the same resource within this window.  Without this, a single
+# misconfiguration can trigger dozens of redundant remediations before
+# the first one propagates through the AWS control plane.
+REMEDIATION_COOLDOWN_SECONDS = 300  # 5 minutes
+
+_recent_remediations: dict[str, float] = {}
+
+
+def should_remediate(resource_arn: str, now: float | None = None) -> bool:
+    """Check if a resource is past its remediation cooldown.
+
+    Parameters
+    ----------
+    resource_arn : str
+        The ARN of the resource to remediate.
+    now : float, optional
+        Current epoch time. Defaults to time.time().
+
+    Returns
+    -------
+    bool
+        True if remediation should proceed.
+    """
+    import time
+    now = now or time.time()
+    last = _recent_remediations.get(resource_arn, 0.0)
+    if now - last < REMEDIATION_COOLDOWN_SECONDS:
+        return False
+    _recent_remediations[resource_arn] = now
+    return True

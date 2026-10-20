@@ -97,3 +97,31 @@ def _guess_resource(event: Event) -> str:
         if p.get(key):
             return str(p[key])
     return "unknown"
+
+
+def format_alert(event_name: str, resource_arn: str, principal: str, region: str) -> str:
+    """Format a remediation alert for SNS notification.
+
+    Produces a structured, human-readable alert that includes the
+    offending action, who did it, what was remediated, and where.
+    """
+    return (
+        f"[WATCHPOST REMEDIATION]\n"
+        f"Event:     {event_name}\n"
+        f"Resource:  {resource_arn}\n"
+        f"Principal: {principal}\n"
+        f"Region:    {region}\n"
+        f"Action:    Auto-remediated. Review CloudTrail for original change."
+    )
+
+
+def format_alert_json(event_name: str, resource_arn: str, principal: str, region: str) -> dict:
+    """Structured alert payload for downstream processing."""
+    return {
+        "source": "watchpost",
+        "event": event_name,
+        "resource": resource_arn,
+        "principal": principal,
+        "region": region,
+        "action": "auto_remediated",
+    }

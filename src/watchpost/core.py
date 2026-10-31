@@ -94,6 +94,7 @@ class Settings:
     min_guardduty_severity: float = 7.0
     alert_on_root_activity: bool = True
     max_actions_per_event: int = 50
+    max_notification_retries: int = 3
 
     @property
     def fix(self) -> bool:
@@ -112,6 +113,7 @@ class Settings:
             min_guardduty_severity=float(os.environ.get("WATCHPOST_GUARDDUTY_MIN_SEVERITY", "7")),
             alert_on_root_activity=os.environ.get("WATCHPOST_ALERT_ON_ROOT", "true").lower() != "false",
             max_actions_per_event=int(os.environ.get("WATCHPOST_MAX_ACTIONS", "50")),
+            max_notification_retries=int(os.environ.get("WATCHPOST_NOTIFY_RETRIES", "3")),
         )
 
 
@@ -168,7 +170,7 @@ def responder(name: str, description: str, match: Match):
 
 
 def api_call(service: str, *names: str) -> Match:
-    """Match a successful CloudTrail API call, like api_call("s3", "PutBucketAcl")."""
+    """Match a successful CloudTrail API call, like api_call(\"s3\", \"PutBucketAcl\")."""
 
     def match(event: Event) -> bool:
         return (

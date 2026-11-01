@@ -99,7 +99,7 @@ def _guess_resource(event: Event) -> str:
     return "unknown"
 
 
-def format_alert(event_name: str, resource_arn: str, principal: str, region: str) -> str:
+def format_remediation_alert(event_name: str, resource_arn: str, principal: str, region: str) -> str:
     """Format a remediation alert for SNS notification.
 
     Produces a structured, human-readable alert that includes the

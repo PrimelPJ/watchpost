@@ -93,6 +93,7 @@ class Settings:
     disabled: set[str] = field(default_factory=set)
     min_guardduty_severity: float = 7.0
     alert_on_root_activity: bool = True
+    alert_on_failed_auth: bool = True
     max_actions_per_event: int = 50
     max_notification_retries: int = 3
 
@@ -112,6 +113,7 @@ class Settings:
             disabled=disabled,
             min_guardduty_severity=float(os.environ.get("WATCHPOST_GUARDDUTY_MIN_SEVERITY", "7")),
             alert_on_root_activity=os.environ.get("WATCHPOST_ALERT_ON_ROOT", "true").lower() != "false",
+            alert_on_failed_auth=os.environ.get("WATCHPOST_ALERT_ON_FAILED_AUTH", "true").lower() != "false",
             max_actions_per_event=int(os.environ.get("WATCHPOST_MAX_ACTIONS", "50")),
             max_notification_retries=int(os.environ.get("WATCHPOST_NOTIFY_RETRIES", "3")),
         )

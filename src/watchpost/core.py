@@ -96,6 +96,7 @@ class Settings:
     alert_on_failed_auth: bool = True
     max_actions_per_event: int = 50
     max_notification_retries: int = 3
+    notification_timeout_seconds: int = 10
 
     @property
     def fix(self) -> bool:
@@ -116,6 +117,7 @@ class Settings:
             alert_on_failed_auth=os.environ.get("WATCHPOST_ALERT_ON_FAILED_AUTH", "true").lower() != "false",
             max_actions_per_event=int(os.environ.get("WATCHPOST_MAX_ACTIONS", "50")),
             max_notification_retries=int(os.environ.get("WATCHPOST_NOTIFY_RETRIES", "3")),
+            notification_timeout_seconds=int(os.environ.get("WATCHPOST_NOTIFY_TIMEOUT", "10")),
         )
 
 

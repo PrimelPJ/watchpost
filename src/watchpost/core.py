@@ -191,7 +191,7 @@ def api_call(service: str, *names: str) -> Match:
 # on the same resource within this window.  Without this, a single
 # misconfiguration can trigger dozens of redundant remediations before
 # the first one propagates through the AWS control plane.
-REMEDIATION_COOLDOWN_SECONDS = 300  # 5 minutes
+REMEDIATION_COOLDOWN_SECONDS = int(os.environ.get("WATCHPOST_COOLDOWN_SECONDS", "300"))
 
 _recent_remediations: dict[str, float] = {}
 

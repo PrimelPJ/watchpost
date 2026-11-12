@@ -45,6 +45,12 @@ variable "log_retention_days" {
   default     = 90
 }
 
+variable "remediation_cooldown_seconds" {
+  description = "Seconds to wait before re-remediating the same resource. Maps to WATCHPOST_COOLDOWN_SECONDS."
+  type        = number
+  default     = 300
+}
+
 variable "tags" {
   description = "Tags added to everything."
   type        = map(string)

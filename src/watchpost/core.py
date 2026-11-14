@@ -97,6 +97,7 @@ class Settings:
     max_actions_per_event: int = 50
     max_notification_retries: int = 3
     notification_timeout_seconds: int = 10
+    snapshot_retention_days: int = 90
 
     @property
     def fix(self) -> bool:
@@ -118,6 +119,7 @@ class Settings:
             max_actions_per_event=int(os.environ.get("WATCHPOST_MAX_ACTIONS", "50")),
             max_notification_retries=int(os.environ.get("WATCHPOST_NOTIFY_RETRIES", "3")),
             notification_timeout_seconds=int(os.environ.get("WATCHPOST_NOTIFY_TIMEOUT", "10")),
+            snapshot_retention_days=int(os.environ.get("WATCHPOST_SNAPSHOT_RETENTION_DAYS", "90")),
         )
 
 

@@ -194,6 +194,7 @@ def api_call(service: str, *names: str) -> Match:
 # misconfiguration can trigger dozens of redundant remediations before
 # the first one propagates through the AWS control plane.
 REMEDIATION_COOLDOWN_SECONDS = int(os.environ.get("WATCHPOST_COOLDOWN_SECONDS", "300"))
+MAX_REMEDIATION_CACHE_SIZE = 1000
 
 _recent_remediations: dict[str, float] = {}
 
@@ -218,5 +219,8 @@ def should_remediate(resource_arn: str, now: float | None = None) -> bool:
     last = _recent_remediations.get(resource_arn, 0.0)
     if now - last < REMEDIATION_COOLDOWN_SECONDS:
         return False
+    if len(_recent_remediations) >= MAX_REMEDIATION_CACHE_SIZE:
+        oldest = min(_recent_remediations, key=_recent_remediations.__getitem__)
+        del _recent_remediations[oldest]
     _recent_remediations[resource_arn] = now
     return True

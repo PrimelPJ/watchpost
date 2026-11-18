@@ -98,6 +98,7 @@ class Settings:
     max_notification_retries: int = 3
     notification_timeout_seconds: int = 10
     snapshot_retention_days: int = 90
+    alert_on_config_changes: bool = True
 
     @property
     def fix(self) -> bool:
@@ -120,6 +121,7 @@ class Settings:
             max_notification_retries=int(os.environ.get("WATCHPOST_NOTIFY_RETRIES", "3")),
             notification_timeout_seconds=int(os.environ.get("WATCHPOST_NOTIFY_TIMEOUT", "10")),
             snapshot_retention_days=int(os.environ.get("WATCHPOST_SNAPSHOT_RETENTION_DAYS", "90")),
+            alert_on_config_changes=os.environ.get("WATCHPOST_ALERT_ON_CONFIG_CHANGES", "true").lower() != "false",
         )
 
 

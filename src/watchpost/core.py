@@ -99,6 +99,7 @@ class Settings:
     notification_timeout_seconds: int = 10
     snapshot_retention_days: int = 90
     alert_on_config_changes: bool = True
+    alert_on_mfa_changes: bool = True
 
     @property
     def fix(self) -> bool:
@@ -122,6 +123,7 @@ class Settings:
             notification_timeout_seconds=int(os.environ.get("WATCHPOST_NOTIFY_TIMEOUT", "10")),
             snapshot_retention_days=int(os.environ.get("WATCHPOST_SNAPSHOT_RETENTION_DAYS", "90")),
             alert_on_config_changes=os.environ.get("WATCHPOST_ALERT_ON_CONFIG_CHANGES", "true").lower() != "false",
+            alert_on_mfa_changes=os.environ.get("WATCHPOST_ALERT_ON_MFA_CHANGES", "true").lower() != "false",
         )
 
 

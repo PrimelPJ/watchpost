@@ -16,3 +16,5 @@ deploy/build/
 *.tfvars
 !*.tfvars.example
 tfplan
+*.env.local
+.env

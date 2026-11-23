@@ -100,6 +100,7 @@ class Settings:
     snapshot_retention_days: int = 90
     alert_on_config_changes: bool = True
     alert_on_mfa_changes: bool = True
+    alert_on_kms_key_deletion: bool = True
 
     @property
     def fix(self) -> bool:
@@ -124,6 +125,7 @@ class Settings:
             snapshot_retention_days=int(os.environ.get("WATCHPOST_SNAPSHOT_RETENTION_DAYS", "90")),
             alert_on_config_changes=os.environ.get("WATCHPOST_ALERT_ON_CONFIG_CHANGES", "true").lower() != "false",
             alert_on_mfa_changes=os.environ.get("WATCHPOST_ALERT_ON_MFA_CHANGES", "true").lower() != "false",
+            alert_on_kms_key_deletion=os.environ.get("WATCHPOST_ALERT_ON_KMS_KEY_DELETION", "true").lower() != "false",
         )
 
 
